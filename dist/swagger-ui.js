@@ -31467,6 +31467,11 @@ SwaggerUi.Views.OperationView = Backbone.View.extend({
       }
       opts.responseContentType = $('div select[name=responseContentType]', $(this.el)).val();
       opts.requestContentType = $('div select[name=parameterContentType]', $(this.el)).val();
+
+      // Accepts any content-type in a response by appending a wildcard
+      // to the one specified in the interface.
+      opts.responseContentType += ';q=0.9, */*;q=0.7';
+
       $('.response_throbber', $(this.el)).show();
       if (isFileUpload) {
         $('.request_url', $(this.el)).html('<pre></pre>');
